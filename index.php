@@ -17,15 +17,15 @@
 	    <h1 class="page-title">Progressively Enhanced Stock Table</h1>
 
 	    <section class="last-updated">
-	    	<h1>Last updated <span class="current-time"><?php echo date('g:i:s a'); ?></span>. <strong class="static-page-warning"><a href="../">Refresh</a> for updates.</strong></h1>
+	    	<h1>Last updated <span class="current-time"><?php echo date('g:i:s a'); ?></span>. <strong class="static-page-message"><a href="../">Refresh</a> for updates.</strong></h1>
 	    </section><!-- .last-updated -->
 
 	    <div class="stock-table-wrapper">
 
 		    <table class="stock-table">
 		    	<thead>
-		    		<th scope="col">Time</th>
-		    		<th scope="col">Stock Price</th>
+		    		<th class="table-headers" scope="col">Time</th>
+		    		<th class="table-headers" scope="col">Share Price</th>
 		    	</thead>
 		    	<tbody>
 		    		<?php
@@ -50,9 +50,9 @@
 		    				$output .= '<th class="time-label" scope="row">';
 		    				$output .= date('g:') . $lastMinute . ':' . (($i+1) * 10) . ' <abbr title="' . $amPmAbbr .'">' . date('a') . '</abbr>';
 		    				$output .= '</th>' . "\n\t\t\t\t\t";
-		    				$output .= '<td class="share-price">$';
+		    				$output .= '<td class="share-price">$<span class="share-price-num">';
 		    				$output .= rand(0, 200);
-		    				$output .= '</td>' . "\n\t\t\t\t";
+		    				$output .= '</span></td>' . "\n\t\t\t\t";
 		    				$output .= '</tr>' . "\n";
 
 		    				echo $output;

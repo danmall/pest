@@ -1,0 +1,24 @@
+/*
+*************************************************
+
+PROGRESSIVELY ENHANCED STOCK TABLE
+Enhanced Screen Styles
+Only applies when JavaScript is enabled
+
+Created by the epic SuperFriendly team.
+http://superfriend.ly/
+
+*************************************************
+*/
+
+
+
+/*-------------------------------------------    
+	Modules
+-------------------------------------------*/
+
+.stock-table-wrapper { background: transparent url(/-/i/graph-bg.gif) no-repeat 0 0; height: 201px; overflow: hidden; }
+.graph-table { position: relative; }
+	.graph-table td { border: none; }
+	.time-label { position: absolute; left: -9999px; }
+	.share-price { width: 10px; height: 10px; background: #fff; border-radius: 10px; padding: 0; position: absolute; }

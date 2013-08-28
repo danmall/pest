@@ -16,25 +16,49 @@ $(document).ready(function() {
     
     var Site = function(){
 
-        /*
-        var privateGreeting = "hello private";
-        this.publicGreeting = "hello public";
-    
-        var privateMethod = function(whatToSay){ // private
-            alert(whatToSay);
-        }  
-
-        this.publicMethod = function(whatToSay){ //public
-            alert(whatToSay);
-        }*/
-
         this.init = function(){
-            //this.saySomething();
+            convertTableToGraph();
+            this.updateTime();
         }
         
-        this.saySomething = function(){
-            alert('yo yo');
+        var convertTableToGraph = function(){
+
+            $('.stock-table').addClass('graph-table');
+            $('.table-headers').addClass('offscreen');
+            $('.share-price').addClass('phark');
+
+            $('.static-page-message').remove();
+
+            // add position to dots
+            $('.share-price-num').each(function(n){
+                var _topPos = $(this).text();
+                $(this).parents('.share-price').css({
+                    'left': (n*20)+15 + '%',
+                    'top': _topPos + 'px'
+                });
+            });
+            
         }
+
+        this.updateTime = function(){
+            setInterval(function(){
+                var _currentTime = new Date();
+                var _hours = _currentTime.getHours();
+                if(_hours <= 12) {
+                    var _amPm = 'am';                
+                }else{
+                    var _amPm = 'pm';
+                    _hours -= 12;
+                }
+                var _seconds = _currentTime.getSeconds();
+                if(_seconds < 10){
+                    _seconds = '0' + _seconds;
+                }
+
+                $('.current-time').html(_hours + ':' + _currentTime.getMinutes() + ':' + _seconds + ' ' + _amPm);
+            }, 1000);
+        }
+
     };
     
     
@@ -44,12 +68,6 @@ $(document).ready(function() {
         
     var pest = new Site();
     pest.init();
-    
-    /*pest.privateMethod('hey nowew'); // doesn't work
-    pest.publicMethod('hey nowew'); // works
-
-    console.log(pest.privateGreeting); // doesn't work
-    console.log(pest.publicGreeting); //works */
 
     
     
