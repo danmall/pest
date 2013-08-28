@@ -1,7 +1,7 @@
 /*
 *************************************************
 
-PROJECT NAME
+PROGRESSIVELY ENHANCED STOCK TABLE
 General Screen Styles
 
 Created by the epic SuperFriendly team.
@@ -28,19 +28,21 @@ body:after { content: 'mini'; display: none; }
 /*-------------------------------------------    
     Base     
 -------------------------------------------*/
+
 * { margin: 0; padding: 0; }
 html { font-size: 62.5%; } /* for rems */
-body { font: normal 62.5%/1.5 Helvetica, Arial, sans-serif; color: #333; }
+body { /*font: normal 62.5%/1.5 'Trebuchet MS', Arial, sans-serif;*/ font-family: 'Trebuchet MS', Arial, sans-serif; color: #333; background: #222; }
+
 
 
 /* block level */
 
-h1, .h1 { font: bold 4.2rem Helvetica, Arial, sans-serif; margin: 0 0 0.5em; }
+h1, .h1 { font: bold 2.6rem 'Trebuchet MS', Arial, sans-serif; margin: 0 0 0.5em; color: #fff; }
 h2, .h2 { font: bold 1.8rem Helvetica, Arial, sans-serif; margin: 0 0 1em; }
 h3, .h3 { font: bold 1.5rem Helvetica, Arial, sans-serif; margin: 0 0 1em; }
 h4, h5, h6, .h4, .h5, .h6 { font: bold 1.2rem Helvetica, Arial, sans-serif; margin: 0 0 1em; }
 
-p, ul, dl, ol, table { font-size: 16px; margin: 0 0 1.5em; }
+p, ul, dl, ol, table { font-size: 16px; font-size: 1.6rem; margin: 0 0 1.5em; }
 
 form { margin: 0 0 1.5em; }
 
@@ -53,8 +55,9 @@ input.empty::-webkit-input-placeholder, textarea.empty::-webkit-input-placeholde
 input.empty:-moz-placeholder, textarea.empty:-moz-placeholder { color: red; }
 .error { color: red; }
 
-table { }
-    td { padding: 0.25em 1em; border-top: 1px solid #aaa; }
+table { border-collapse: collapse; width: 100%; }
+    th, td { padding: 0.75rem 2rem; border-top: 1px solid #444; text-align: left; color: #ccc; }
+    th[scope="col"] { text-transform: uppercase; font-weight: bold; color: #666; font-size: 80%; letter-spacing: 0.1rem; }
 
 em { font-style: italic; }
 strong { font-weight: bold; }
@@ -63,8 +66,8 @@ mark { background: none; font-style: normal; }
 
 video { width: 100%; height: auto; }
 
-a { text-decoration: none; .transition(all, 0.25s, linear); }
-a:hover, a:focus { color: red; }
+a {  }
+a:hover, a:focus { text-decoration: none; }
 
 img { display: block; margin: 0 10px 10px 0; max-width: 100%; }
 
@@ -113,6 +116,8 @@ sub, sup { line-height: 0; }
 	Modules
 -------------------------------------------*/
 
+.last-updated { background: #ffc; padding: 1rem; margin: 0 0 1.5rem; }
+	.last-updated h1 { color: #222; margin: 0; font-size: 1.8rem; line-height: 1.4; }
 
 
 
@@ -120,3 +125,15 @@ sub, sup { line-height: 0; }
 /*-------------------------------------------    
 	Page Specific
 -------------------------------------------*/
+
+.wrap { margin: 0 auto; width: 95%; padding: 1rem 0; max-width: 800px; }
+
+
+/*-------------------------------------------    
+	Media Queries
+-------------------------------------------*/
+
+@media screen and (min-width: 800px) {
+	.page-title { font-size: 4rem; text-align: center; margin: 0 0 3rem; }
+	.wrap { padding: 3rem 0; }
+}
