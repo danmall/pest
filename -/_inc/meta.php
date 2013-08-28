@@ -4,4 +4,4 @@
 
     <!-- http://blog.javierusobiaga.com/stop-using-the-viewport-tag-until-you-know-ho -->
     <!-- <meta name="viewport" content="width=device-width;initial-scale=1" /> -->
-    <meta name="viewport" content="width=device-width" /
+    <meta name="viewport" content="width=device-width" />
