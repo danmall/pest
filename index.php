@@ -17,7 +17,7 @@
 	    <h1 class="page-title">Progressively Enhanced Stock Table</h1>
 
 	    <section class="last-updated">
-	    	<h1>Last updated <span class="current-time"><?php echo $currentTime; ?></span>. <strong class="static-page-warning"><a href="../">Refresh</a> for updates.</strong></h1>
+	    	<h1>Last updated <span class="current-time"><?php echo date('g:i:s a'); ?></span>. <strong class="static-page-warning"><a href="../">Refresh</a> for updates.</strong></h1>
 	    </section><!-- .last-updated -->
 
 	    <div class="stock-table-wrapper">
@@ -28,26 +28,37 @@
 		    		<th scope="col">Stock Price</th>
 		    	</thead>
 		    	<tbody>
-			    	<tr>
-			    		<th scope="row"><?php buildLastMinute(1, $lastMinute, $amPmAbbr); ?></th>
-			    		<td class="share-price">$10</td>
-			    	</tr>
-			    	<tr>
-			    		<th scope="row"><?php buildLastMinute(2, $lastMinute, $amPmAbbr); ?></th>
-			    		<td class="share-price">$10</td>
-			    	</tr>
-			    	<tr>
-			    		<th scope="row"><?php buildLastMinute(3, $lastMinute, $amPmAbbr); ?></th>
-			    		<td class="share-price">$10</td>
-			    	</tr>
-			    	<tr>
-			    		<th scope="row"><?php buildLastMinute(4, $lastMinute, $amPmAbbr); ?></th>
-			    		<td class="share-price">$10</td>
-			    	</tr>
-			    	<tr>
-			    		<th scope="row"><?php buildLastMinute(5, $lastMinute, $amPmAbbr); ?></th>
-			    		<td class="share-price">$10</td>
-			    	</tr>		    	
+		    		<?php
+
+			    		$lastMinute = intval(date('i'))-1;
+						if($lastMinute < 10){
+							$lastMinute = '0' . strval($lastMinute);
+						}
+
+						if(date('a') == 'am'){
+							$amPmAbbr = 'Ante Meridien';
+						}else{
+							$amPmAbbr = 'Post Meridien';
+						}
+
+		    			for($i == 0; $i < 5; $i++){
+		    				$output = '';
+		    				if($i > 0){
+		    					$output .= "\t\t\t\t"; 
+		    				}
+		    				$output .= '<tr>' . "\n\t\t\t\t\t";
+		    				$output .= '<th class="time-label" scope="row">';
+		    				$output .= date('g:') . $lastMinute . ':' . (($i+1) * 10) . ' <abbr title="' . $amPmAbbr .'">' . date('a') . '</abbr>';
+		    				$output .= '</th>' . "\n\t\t\t\t\t";
+		    				$output .= '<td class="share-price">$';
+		    				$output .= rand(0, 200);
+		    				$output .= '</td>' . "\n\t\t\t\t";
+		    				$output .= '</tr>' . "\n";
+
+		    				echo $output;
+		    			}
+
+		    		?>		    	
 			    </tbody>
 		    </table><!-- .stock-table -->
 
