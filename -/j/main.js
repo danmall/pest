@@ -28,22 +28,33 @@ var Site = function(){
 
         $('.stock-table').addClass('graph-table');
         $('.table-headers').addClass('offscreen');
-        $('.share-price').addClass('phark');
+        $('.share-price').append('<b class="dot phark" />');
 
         $('.static-page-message').remove();
 
         // add position to dots
         $('.share-price-num').each(function(n){
-            var _topPos = $(this).text();
+            var _vertPos = $(this).text();
             $(this).parents('.share-price').css({
                 'left': (n*20)+15 + '%',
-                'top': _topPos + 'px'
+                //'top': _vertPos + 'px'
+                'bottom': _vertPos - 10 + 'px' 
             });
+
+            if(parseInt(_vertPos) > 160){
+                $(this).parents('.share-price').addClass('flip-tip');
+            }
 
             // updating vars
             _currentLeftPos = (n*20)+15;
             _currentDotCount = n;
 
+        });
+
+        $('.time-label').each(function(n){
+            $(this).css({
+                'left': (n*20)+10 + '%',
+            });
         });
         
     }

@@ -50,9 +50,9 @@
 		    				$output .= '<th class="time-label" scope="row">';
 		    				$output .= date('g:') . $lastMinute . ':' . (($i+1) * 10) . ' <abbr title="' . $amPmAbbr .'">' . date('a') . '</abbr>';
 		    				$output .= '</th>' . "\n\t\t\t\t\t";
-		    				$output .= '<td class="share-price">$<span class="share-price-num">';
+		    				$output .= '<td class="share-price"><span class="share-price-tooltip">$<b class="share-price-num">';
 		    				$output .= rand(0, 200);
-		    				$output .= '</span></td>' . "\n\t\t\t\t";
+		    				$output .= '</b></span></td>' . "\n\t\t\t\t";
 		    				$output .= '</tr>' . "\n";
 
 		    				echo $output;
