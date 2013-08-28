@@ -3,7 +3,10 @@
     <title>Progressively Enhanced Stock Table</title>
     <?php require($_SERVER["DOCUMENT_ROOT"]."/-/_inc/meta.php"); echo "\n"; ?>        
 
-    <?php require($_SERVER["DOCUMENT_ROOT"]."/-/_inc/cssReference.php"); echo "\n"; ?>        
+    <?php require($_SERVER["DOCUMENT_ROOT"]."/-/_inc/cssReference.php"); echo "\n"; ?>      
+
+    <!-- Mint -->
+    <script src="http://danielmall.com/mint/?js"></script>  
 
 </head>
 <body>
