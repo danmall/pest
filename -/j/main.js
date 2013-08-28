@@ -14,14 +14,19 @@ http://superfriend.ly/
 var Site = function(){
 
     // private
+    var _debugMode = false;
+
     var _currentLeftPos = 0;
     var _currentDotCount = 0;
+    var _currentTimeString = '';
+
+    var MAX_HEIGHT_BEFORE_FLIP = 160;
 
     this.init = function(){
         convertTableToGraph();
         updateTime();
         moveGraph();
-        //addPoint();
+        addPoint();
     }
     
     var convertTableToGraph = function(){
@@ -41,13 +46,13 @@ var Site = function(){
                 'bottom': _vertPos - 10 + 'px' 
             });
 
-            if(parseInt(_vertPos) > 160){
+            if(parseInt(_vertPos) > MAX_HEIGHT_BEFORE_FLIP){
                 $(this).parents('.share-price').addClass('flip-tip');
             }
 
             // updating vars
             _currentLeftPos = (n*20)+15;
-            _currentDotCount = n;
+            _currentDotCount++;
 
         });
 
@@ -56,6 +61,12 @@ var Site = function(){
                 'left': (n*20)+10 + '%',
             });
         });
+
+        if (_debugMode){
+            setInterval(addPoint, 250);
+        }else{
+            setInterval(addPoint, 5000);
+        }
         
     }
 
@@ -69,28 +80,57 @@ var Site = function(){
                 var _amPm = 'pm';
                 _hours -= 12;
             }
+
+            var _minutes = _currentTime.getMinutes();
+            if(_minutes < 10){
+                _minutes = '0' + _minutes;
+            }
+
             var _seconds = _currentTime.getSeconds();
             if(_seconds < 10){
                 _seconds = '0' + _seconds;
             }
 
-            $('.current-time').html(_hours + ':' + _currentTime.getMinutes() + ':' + _seconds + ' ' + _amPm);
+            _currentTimeString = _hours + ':' + _minutes + ':' + _seconds + ' ' + _amPm;
+
+            $('.current-time').html(_currentTimeString);
+
         }, 1000);
     }
 
     var addPoint = function(){
 
-        $('.stock-table tbody').append('<tr><th class="time-label" scope="row">6:19:10 <abbr title="Ante Meridien">am</abbr></th><td class="share-price">$<span class="share-price-num">104</span></td></tr>');
+        var _dollarAmount = Math.ceil(Math.random()*200);
+        if(_dollarAmount > MAX_HEIGHT_BEFORE_FLIP){
+            var _extraClass = ' flip-tip';
+        }else{
+            var _extraClass = '';
+        }
+
+        var _timestampLeftPos = (_currentDotCount+1)*20;
+
+        $('.stock-table tbody').append('<tr><th class="time-label" scope="row" style="left: ' + (_timestampLeftPos-25) + '%;">' + _currentTimeString + '</th><td class="share-price' + _extraClass + ' new" style="bottom:' + (_dollarAmount-10) + 'px; left: ' + _timestampLeftPos + '%"><span class="share-price-tooltip">$<b class="share-price-num">' + _dollarAmount + '</b></span><b class="dot phark"></b></td></tr>');
+
+        _currentDotCount++;
 
     }
 
     var moveGraph = function(){
 
-        setInterval(function(){
-            $('.graph-table').animate({
-                'left': "-=5px"
+        if (_debugMode){
+            setInterval(function(){
+                $('.graph-table').animate({
+                    'left': "-=100px"
+                }, 500);
             }, 500);
-        }, 500);
+        }else{
+            setInterval(function(){
+                $('.graph-table').animate({
+                    'left': "-=5px"
+                }, 500);
+            }, 500);
+        }
+
     }
 
 };
