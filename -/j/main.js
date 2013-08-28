@@ -13,9 +13,15 @@ http://superfriend.ly/
 
 var Site = function(){
 
+    // private
+    var _currentLeftPos = 0;
+    var _currentDotCount = 0;
+
     this.init = function(){
         convertTableToGraph();
-        this.updateTime();
+        updateTime();
+        moveGraph();
+        //addPoint();
     }
     
     var convertTableToGraph = function(){
@@ -33,11 +39,16 @@ var Site = function(){
                 'left': (n*20)+15 + '%',
                 'top': _topPos + 'px'
             });
+
+            // updating vars
+            _currentLeftPos = (n*20)+15;
+            _currentDotCount = n;
+
         });
         
     }
 
-    this.updateTime = function(){
+    var updateTime = function(){
         setInterval(function(){
             var _currentTime = new Date();
             var _hours = _currentTime.getHours();
@@ -54,6 +65,21 @@ var Site = function(){
 
             $('.current-time').html(_hours + ':' + _currentTime.getMinutes() + ':' + _seconds + ' ' + _amPm);
         }, 1000);
+    }
+
+    var addPoint = function(){
+
+        $('.stock-table tbody').append('<tr><th class="time-label" scope="row">6:19:10 <abbr title="Ante Meridien">am</abbr></th><td class="share-price">$<span class="share-price-num">104</span></td></tr>');
+
+    }
+
+    var moveGraph = function(){
+
+        setInterval(function(){
+            $('.graph-table').animate({
+                'left': "-=5px"
+            }, 500);
+        }, 500);
     }
 
 };
